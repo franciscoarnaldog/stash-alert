@@ -1,0 +1,61 @@
+{
+  "name": "stash-alert",
+  "displayName": "Stash Alert",
+  "description": "Alerta en la barra de estado (fondo rojo) cuando el branch actual tiene stashes de git",
+  "version": "0.1.0",
+  "publisher": "franciscoarnaldog",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franciscoarnaldog/stash-alert.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stashAlert.showStashes",
+        "title": "Stash Alert: ver stashes",
+        "category": "Stash Alert"
+      },
+      {
+        "command": "stashAlert.refresh",
+        "title": "Stash Alert: refrescar",
+        "category": "Stash Alert"
+      }
+    ],
+    "configuration": {
+      "title": "Stash Alert",
+      "properties": {
+        "stashAlert.scope": {
+          "type": "string",
+          "enum": [
+            "branch",
+            "all"
+          ],
+          "default": "branch",
+          "description": "Contar solo los stashes creados en el branch actual (branch) o todos los stashes del repo (all)."
+        },
+        "stashAlert.pollSeconds": {
+          "type": "number",
+          "default": 10,
+          "minimum": 3,
+          "description": "Intervalo de refresco del indicador, en segundos."
+        },
+        "stashAlert.hideWhenEmpty": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ocultar el indicador cuando no hay stashes que mostrar."
+        }
+      }
+    }
+  }
+}
