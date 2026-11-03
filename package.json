@@ -2,7 +2,7 @@
   "name": "stash-alert",
   "displayName": "Stash Alert",
   "description": "Alerta en la barra de estado (fondo rojo) cuando el branch actual tiene stashes de git",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "franciscoarnaldog",
   "license": "MIT",
   "repository": {
@@ -38,11 +38,11 @@
         "stashAlert.scope": {
           "type": "string",
           "enum": [
-            "branch",
-            "all"
+            "all",
+            "branch"
           ],
-          "default": "branch",
-          "description": "Contar solo los stashes creados en el branch actual (branch) o todos los stashes del repo (all)."
+          "default": "all",
+          "description": "Contar todos los stashes del repo (all, default: un stash casi siempre se crea para llevarlo a otro branch) o solo los creados en el branch actual (branch)."
         },
         "stashAlert.pollSeconds": {
           "type": "number",

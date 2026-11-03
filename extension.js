@@ -123,7 +123,7 @@ async function refresh() {
         const rel = relevantStashes(entry, scope);
         total += rel.length;
         if (rel.length) {
-            lines.push(`**${entry.repo}** (${entry.branch}): ${rel.length}`);
+            lines.push(`**${entry.repo}** — ${rel.length} stash${rel.length === 1 ? '' : 'es'} (branch actual: ${entry.branch})`);
             for (const s of rel) lines.push(`- ${s.ref} — ${s.subject} _(${s.date})_`);
         }
     }
@@ -131,7 +131,7 @@ async function refresh() {
     statusItem.text = `$(git-stash) ${total} stash${total === 1 ? '' : 'es'}`;
     const md = new vscode.MarkdownString();
     md.appendMarkdown(`**Stash Alert** — alcance: \`${scope}\`\n\n`);
-    md.appendMarkdown(total > 0 ? lines.join('\n') : '_Sin stashes ' + (scope === 'branch' ? 'en el branch actual' : '') + '_');
+    md.appendMarkdown(total > 0 ? lines.join('\n') : `_Sin stashes pendientes${scope === 'branch' ? ' en el branch actual' : ''}_`);
     statusItem.tooltip = md;
 
     if (total > 0) {
